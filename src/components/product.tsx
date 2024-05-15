@@ -10,16 +10,36 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import type { Product } from "@/types/product";
+import type ProductType from "@/types/product";
 
 interface productActions {
-  addToCart: () => void;
+  addToCart: (product: ProductType) => void;
   viewMore: () => void;
 }
 
-type CardProps = React.ComponentProps<typeof Card> & Product & productActions;
+// id: number;
+//   name: string;
+//   description: string;
+//   price: number;
+//   image: string;
+//   category: string;
+//   origin: string;
+
+type CardProps = React.ComponentProps<typeof Card> &
+  ProductType &
+  productActions;
 
 export function Product({ className, ...props }: CardProps) {
+  const product = {
+    id: props.id,
+    name: props.name,
+    description: props.description,
+    price: props.price,
+    image: props.image,
+    category: props.category,
+    origin: props.origin,
+  };
+
   return (
     <Card className={cn("w-[380px]", className)} {...props}>
       <CardHeader>
@@ -56,7 +76,12 @@ export function Product({ className, ...props }: CardProps) {
         >
           Ver Mais <GanttChart className="ml-2 h-4 w-4" />
         </Button>
-        <Button className="w-full" onClick={props.addToCart}>
+        <Button
+          className="w-full"
+          onClick={() => {
+            props.addToCart(product);
+          }}
+        >
           Adicionar ao carrinho <ShoppingCart className="ml-2 h-4 w-4" />
         </Button>
       </CardFooter>

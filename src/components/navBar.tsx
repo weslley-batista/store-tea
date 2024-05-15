@@ -7,8 +7,7 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { Car } from "./car";
-import { Button } from "./ui/button";
+  import { Button } from "./ui/button";
 
 export function NavBar() {
   return (
@@ -20,10 +19,6 @@ export function NavBar() {
               <Button variant="default">Produtos</Button>
             </NavigationMenuLink>
           </a>
-        </NavigationMenuItem>
-
-        <NavigationMenuItem>
-          <Car />
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

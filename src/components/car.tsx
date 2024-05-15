@@ -11,10 +11,15 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { ItemsCar } from "./itemsCar";
 import { ScrollArea } from "./ui/scroll-area";
+import ProductType from "@/types/product";
+import { ItemsCar } from "./itemsCar";
 
-export function Car() {
+interface ItemsCarProps {
+  cart: ProductType[];
+}
+
+export function Car({ cart }: ItemsCarProps) {
   return (
     <Drawer>
       <DrawerTrigger asChild>
@@ -32,42 +37,18 @@ export function Car() {
 
         <div className="flex flex-col gap-4 p-4">
           <ScrollArea className="h-72">
-            <ItemsCar
-              id={1 as never}
-              name={"nome do item"}
-              description={"descrição do item"}
-              price={0}
-              image={""}
-              category={""}
-              origin={""}
-            />
-            <ItemsCar
-              id={1 as never}
-              name={"nome do item"}
-              description={"descrição do item"}
-              price={0}
-              image={""}
-              category={""}
-              origin={""}
-            />
-            <ItemsCar
-              id={1 as never}
-              name={"nome do item"}
-              description={"descrição do item"}
-              price={0}
-              image={""}
-              category={""}
-              origin={""}
-            />
-            <ItemsCar
-              id={1 as never}
-              name={"nome do item"}
-              description={"descrição do item"}
-              price={0}
-              image={""}
-              category={""}
-              origin={""}
-            />
+            {cart.map((item) => (
+              <ItemsCar
+                key={item.id}
+                id={item.id as never}
+                name={item.name}
+                description={item.description}
+                price={item.price}
+                image={item.image}
+                category={item.category}
+                origin={item.origin}
+              />
+            ))}
           </ScrollArea>
         </div>
         <DrawerFooter>

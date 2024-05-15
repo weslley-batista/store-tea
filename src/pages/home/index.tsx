@@ -1,10 +1,20 @@
-import { NavBar, Product } from "@/components";
+import { Car, NavBar, Product } from "@/components";
+import { CartHook } from "@/hooks/cartHook";
 import products from "@/mock";
+import ProductType from "@/types/product";
+import { useEffect } from "react";
 
 function Home() {
+  const { cart, setCart } = CartHook();
+
+  const addToCart = (product: ProductType) => {
+    setCart([...cart, product]);
+  };
+
   return (
     <>
       <NavBar />
+      <Car cart={cart} />
       <div className="w-full flex flex-wrap gap-10 justify-around p-8">
         {products.map((product) => (
           <Product
@@ -16,9 +26,7 @@ function Home() {
             image={product.image}
             category={product.category}
             origin={product.origin}
-            addToCart={() => {
-              alert("Adicionado ao carrinho");
-            }}
+            addToCart={addToCart}
             viewMore={() => {
               alert("Ver mais");
             }}
