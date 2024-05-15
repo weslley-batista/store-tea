@@ -1,20 +1,17 @@
 import { Car, NavBar, Product } from "@/components";
 import { CartHook } from "@/hooks/cartHook";
 import products from "@/mock";
-import ProductType from "@/types/product";
-import { useEffect } from "react";
 
 function Home() {
-  const { cart, setCart } = CartHook();
-
-  const addToCart = (product: ProductType) => {
-    setCart([...cart, product]);
-  };
+  const { cart, addToCart } = CartHook();
 
   return (
     <>
-      <NavBar />
-      <Car cart={cart} />
+      <div className="flex items-center justify-between px-20 py-10">
+        <NavBar />
+        
+        <Car cart={cart} />
+      </div>
       <div className="w-full flex flex-wrap gap-10 justify-around p-8">
         {products.map((product) => (
           <Product

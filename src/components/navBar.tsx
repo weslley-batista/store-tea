@@ -7,11 +7,11 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-  import { Button } from "./ui/button";
+import { Button } from "./ui/button";
 
 export function NavBar() {
   return (
-    <NavigationMenu className="py-10 px-14">
+    <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
           <a href="/home">

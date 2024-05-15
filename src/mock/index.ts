@@ -1,6 +1,6 @@
-import { Product } from "@/types/product";
+import type ProductType from "@/types/product";
 
-const products: Product[] = [
+const products: ProductType[] = [
   {
     id: 1,
     name: "Café Arábica Gourmet",

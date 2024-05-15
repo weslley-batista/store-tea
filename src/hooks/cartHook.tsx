@@ -1,8 +1,12 @@
-import { Product } from "@/types/product";
+import type ProductType from "@/types/product";
 import { useState } from "react";
 
 export const CartHook = () => {
-  const [cart, setCart] = useState<Product[]>([]);
+  const [cart, setCart] = useState<ProductType[]>([]);
 
-  return { cart, setCart };
+  const addToCart = (product: ProductType) => {
+    setCart([...cart, product]);
+  };
+
+  return { cart, setCart, addToCart };
 };
