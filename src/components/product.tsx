@@ -11,25 +11,19 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import type ProductType from "@/types/product";
+import { useNavigate } from "react-router-dom";
 
 interface productActions {
   addToCart: (product: ProductType) => void;
-  viewMore: () => void;
 }
-
-// id: number;
-//   name: string;
-//   description: string;
-//   price: number;
-//   image: string;
-//   category: string;
-//   origin: string;
 
 type CardProps = React.ComponentProps<typeof Card> &
   ProductType &
   productActions;
 
 export function Product({ className, ...props }: CardProps) {
+  const navigate = useNavigate();
+
   const product = {
     id: props.id,
     name: props.name,
@@ -72,7 +66,7 @@ export function Product({ className, ...props }: CardProps) {
         <Button
           className="w-full"
           variant={"secondary"}
-          onClick={props.viewMore}
+          onClick={() => navigate("/product/" + props.id, { replace: false })}
         >
           Ver Mais <GanttChart className="ml-2 h-4 w-4" />
         </Button>
