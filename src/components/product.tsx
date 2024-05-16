@@ -17,14 +17,6 @@ interface productActions {
   addToCart: (product: ProductType) => void;
 }
 
-// id: number;
-//   name: string;
-//   description: string;
-//   price: number;
-//   image: string;
-//   category: string;
-//   origin: string;
-
 type CardProps = React.ComponentProps<typeof Card> &
   ProductType &
   productActions;
