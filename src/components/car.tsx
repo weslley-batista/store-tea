@@ -15,17 +15,20 @@ import ProductType from "@/types/product";
 import { ItemsCar } from "./itemsCar";
 import { PayHook } from "@/hooks/payHook";
 import { useEffect } from "react";
+import { CheckoutCard } from "./checkoutCard";
 
 interface ItemsCarProps {
   cart: ProductType[];
+  clearCart: () => void;
+  removeFromCart: (productId: string) => void;
 }
 
-export function Car({ cart }: ItemsCarProps) {
+export function Car({ cart, clearCart, removeFromCart }: ItemsCarProps) {
   const { total, setTotalAmount } = PayHook();
 
   useEffect(() => {
     setTotalAmount(cart);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
 
   return (
@@ -56,20 +59,14 @@ export function Car({ cart }: ItemsCarProps) {
                   image={item.image}
                   category={item.category}
                   origin={item.origin}
+                  removeFromCart={removeFromCart}
                 />
               ))}
             </ScrollArea>
           </div>
           <DrawerFooter>
             <DrawerDescription>Total: R$ {total}</DrawerDescription>
-            <Button
-              className="w-full"
-              onClick={() => {
-                alert(total);
-              }}
-            >
-              Finalizar compra
-            </Button>
+            <CheckoutCard confirmCheckout={clearCart} />
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

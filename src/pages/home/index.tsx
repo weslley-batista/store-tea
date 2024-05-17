@@ -3,14 +3,18 @@ import { CartHook } from "@/hooks/cartHook";
 import products from "@/mock";
 
 function Home() {
-  const { cart, addToCart } = CartHook();
+  const { cart, addToCart, clearCart, removeFromCart } = CartHook();
 
   return (
     <>
       <div className="flex items-center justify-between px-20 py-10">
         <NavBar />
 
-        <Car cart={cart} />
+        <Car
+          cart={cart}
+          clearCart={clearCart}
+          removeFromCart={removeFromCart}
+        />
       </div>
       <div className="w-full flex flex-wrap gap-10 justify-around p-8">
         {products.map((product) => (
