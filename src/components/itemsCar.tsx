@@ -4,13 +4,21 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import type ProductType from "@/types/product";
+import { Button } from "./ui/button";
 
-type CardProps = React.ComponentProps<typeof Card> & ProductType;
+interface productActions {
+  removeFromCart: (productId: string) => void;
+}
+
+type CardProps = React.ComponentProps<typeof Card> &
+  ProductType &
+  productActions;
 
 export function ItemsCar({ className, ...props }: CardProps) {
   return (
@@ -43,6 +51,16 @@ export function ItemsCar({ className, ...props }: CardProps) {
           </div>
         </div>
       </CardContent>
+      <CardFooter>
+        <Button
+          className="w-full"
+          onClick={() => {
+            props.removeFromCart(props.id as string);
+          }}
+        >
+          Remover
+        </Button>
+      </CardFooter>
     </Card>
   );
 }

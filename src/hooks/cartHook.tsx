@@ -8,5 +8,15 @@ export const CartHook = () => {
     setCart([...cart, product]);
   };
 
-  return { cart, setCart, addToCart };
+  const removeFromCart = (productId: string) => {
+    setCart(
+      cart.filter((product) => product.id !== parseInt(productId as string))
+    );
+  };
+
+  const clearCart = () => {
+    setCart([]);
+  };
+
+  return { cart, setCart, addToCart, removeFromCart, clearCart };
 };

@@ -18,14 +18,16 @@ import { useEffect } from "react";
 
 interface ItemsCarProps {
   cart: ProductType[];
+  clearCart: () => void;
+  removeFromCart: (productId: string) => void;
 }
 
-export function Car({ cart }: ItemsCarProps) {
+export function Car({ cart, clearCart, removeFromCart }: ItemsCarProps) {
   const { total, setTotalAmount } = PayHook();
 
   useEffect(() => {
     setTotalAmount(cart);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
 
   return (
@@ -56,6 +58,7 @@ export function Car({ cart }: ItemsCarProps) {
                   image={item.image}
                   category={item.category}
                   origin={item.origin}
+                  removeFromCart={removeFromCart}
                 />
               ))}
             </ScrollArea>
@@ -65,7 +68,7 @@ export function Car({ cart }: ItemsCarProps) {
             <Button
               className="w-full"
               onClick={() => {
-                alert(total);
+                clearCart();
               }}
             >
               Finalizar compra
