@@ -15,6 +15,7 @@ import ProductType from "@/types/product";
 import { ItemsCar } from "./itemsCar";
 import { PayHook } from "@/hooks/payHook";
 import { useEffect } from "react";
+import { CheckoutCard } from "./checkoutCard";
 
 interface ItemsCarProps {
   cart: ProductType[];
@@ -65,14 +66,7 @@ export function Car({ cart, clearCart, removeFromCart }: ItemsCarProps) {
           </div>
           <DrawerFooter>
             <DrawerDescription>Total: R$ {total}</DrawerDescription>
-            <Button
-              className="w-full"
-              onClick={() => {
-                clearCart();
-              }}
-            >
-              Finalizar compra
-            </Button>
+            <CheckoutCard confirmCheckout={clearCart} />
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
